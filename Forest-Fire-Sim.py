@@ -15,12 +15,12 @@ except ImportError:
     sys.exit()
 
 # set up constants
-WIDTH = 79
-HEIGHT = 22
+WIDTH = 180
+HEIGHT = 102
 
 TREE = 'A'
 FIRE = 'W'
-EMPTY = ' '
+EMPTY = '.'
 
 
 INITIAL_TREE_DENSITY = 0.20 # amount of forest that starts with trees
@@ -28,7 +28,7 @@ GROW_CHANCE = 0.01 #chance blank space turns into tree
 FIRE_CHANCE = 0.01 #chance aa tree is hit by lightning and burns
 
 
-PAUSE_LENGTH = 0.5
+PAUSE_LENGTH = 0.05
 
 
 def main():
@@ -63,10 +63,10 @@ def main():
                     for ix in range(-1, 2):
                         for iy in range(-1, 2):
                             # fire spreads to neighboring trees
-                            if forest.get((x + ix, y + iy)) == TREE:
+                            if forest.get((x + ix, y + iy)) == EMPTY:
                                 nextForest[(x + ix, y + iy)] = FIRE
                     # the tree has burned down now, so erase it
-                    nextForest[(x, y)] = EMPTY
+                    nextForest[(x, y)] = FIRE
                 else:
                     # just copy the existing object:
                     nextForest[(x, y)] = forest[(x, y)]
@@ -83,7 +83,7 @@ def createNewForest():
             if (random.random() * 100) <= INITIAL_TREE_DENSITY:
                 forest[(x, y)] = TREE # start as a tree
             else:
-                forest[(x, y)] = EMPTY # start as an empty space
+                forest[(x, y)] = TREE # start as an empty space
     return forest
 
 
@@ -93,7 +93,7 @@ def displayForest(forest):
     for y in range(forest['height']):
         for x in range(forest['width']):
             if forest[(x, y)] == TREE:
-                bext.fg('green')
+                bext.fg('random')
                 print(TREE, end='')
             elif forest[(x, y)] == FIRE:
                 bext.fg('red')
