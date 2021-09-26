@@ -21,14 +21,15 @@ HEIGHT = 22
 TREE = 'A'
 FIRE = 'W'
 EMPTY = ' '
-
+LAKE = 'S'
 
 INITIAL_TREE_DENSITY = 0.20 # amount of forest that starts with trees
 GROW_CHANCE = 0.01 #chance blank space turns into tree
 FIRE_CHANCE = 0.01 #chance aa tree is hit by lightning and burns
+LAKE_CHANCE = 0.6
 
 
-PAUSE_LENGTH = 0.5
+PAUSE_LENGTH = 0.05
 
 
 def main():
@@ -67,6 +68,8 @@ def main():
                                 nextForest[(x + ix, y + iy)] = FIRE
                     # the tree has burned down now, so erase it
                     nextForest[(x, y)] = EMPTY
+                    if (random.random() <= LAKE_CHANCE):
+                        nextForest[(x, y)] = LAKE
                 else:
                     # just copy the existing object:
                     nextForest[(x, y)] = forest[(x, y)]
@@ -100,12 +103,15 @@ def displayForest(forest):
                 print(FIRE, end='')
             elif forest[(x, y)] == EMPTY:
                 print(EMPTY, end='')
+            elif forest[(x, y)] == LAKE:
+                bext.fg('blue')
+                print(LAKE, end='')
         print()
     bext.fg('reset') # use the default font color.
     print('Grow chance: {}%  '.format(GROW_CHANCE * 100), end='')
     print('Lighting chance: {}%  '.format(FIRE_CHANCE *100), end='')
+    print
     print('Press Ctr;-C to quit.')
-
 
 # if this program was run (instad of imported), run the ga,e
 if __name__ == '__main__':
