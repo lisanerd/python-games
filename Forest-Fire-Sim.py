@@ -15,8 +15,8 @@ except ImportError:
     sys.exit()
 
 # set up constants
-WIDTH = 79
-HEIGHT = 22
+WIDTH = 190
+HEIGHT = 102
 
 TREE = 'A'
 FIRE = 'W'
@@ -25,10 +25,10 @@ EMPTY = ' '
 
 INITIAL_TREE_DENSITY = 0.20 # amount of forest that starts with trees
 GROW_CHANCE = 0.01 #chance blank space turns into tree
-FIRE_CHANCE = 0.01 #chance aa tree is hit by lightning and burns
+FIRE_CHANCE = 0.0001 #chance aa tree is hit by lightning and burns
 
 
-PAUSE_LENGTH = 0.5
+PAUSE_LENGTH = 0.005
 
 
 def main():
