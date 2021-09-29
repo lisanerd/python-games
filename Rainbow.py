@@ -15,10 +15,10 @@ except ImportError:
 
 print('Rainbow, by Al Sweigart al@inventwithpython.com')
 print('Press Ctrl-C to stop.')
-time.sleep(3)
+time.sleep(1)
 
 indent = 1 # how many spaces to indent
-indentIncreasing = True # whether the indentation is increasing or not
+indentIncreasing = False # whether the indentation is increasing or not
 
 try:
     while True: # main program loop
@@ -35,11 +35,12 @@ try:
         print('lisa', end='')
         bext.fg('red')
         print('lisa')
+        time.sleep(0.05)
 
         if indentIncreasing:
             # increase the number of spaces
             indent = indent + 1
-            if indent == 60:
+            if indent == 10:
                 # change direction
                 indentIncreasing = False
         else:
