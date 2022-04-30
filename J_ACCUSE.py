@@ -282,7 +282,7 @@ while True:  # main game loop.
         currentLocation = 'TAXI'
         continue  # go back to the start of the main game loop.
 
-    else:  # player asks about a suspect or item.
+    elif response.isdecimal():  # player asks about a suspect or item.
         thingsBeingAskedAbout = knownSuspectsAndItems[int(response) - 1]
         if thingsBeingAskedAbout in (thePersonHere, theItemHere):
             print(' They give you this clue "No comment."')
